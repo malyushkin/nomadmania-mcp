@@ -1,0 +1,32 @@
+[project]
+name = "nomadmania-mcp"
+version = "0.5.0"
+description = "MCP server over wanderfill's NomadMania client: profile, series near a point, unvisited regions, confirmed series ticks"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.13"
+dependencies = [
+    "mcp[cli]>=1.6,<2",
+    "python-dotenv>=1.0",
+    "wanderfill[geo]",
+]
+
+[project.urls]
+Repository = "https://github.com/malyushkin/nomadmania-mcp"
+
+[project.scripts]
+nomadmania-mcp = "nomadmania_mcp.server:main"
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+
+[tool.uv.sources]
+# Pinned on purpose: wanderfill is alpha over a private API. Upgrade = change rev, `uv lock`, run tests.
+wanderfill = { git = "https://github.com/faeton/wanderfill", rev = "d08c03ed8e0509afc9c788e2b5dbdcc9a23b13de" }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["nomadmania_mcp"]

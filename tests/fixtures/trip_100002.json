@@ -1,0 +1,52 @@
+{
+ "result": "OK",
+ "trip": {
+  "date_from": "2024-04-24",
+  "date_to": "2024-05-02",
+  "description": "US trip",
+  "id": 100002,
+  "regions": [
+   {
+    "can_be_hidden": false,
+    "date_from": "2024-04-24",
+    "date_to": "2024-04-29",
+    "day_from": 24,
+    "day_to": 29,
+    "flag1": "/img/flags_new/394.png",
+    "flag2": "/img/flags_new/600.png",
+    "hidden": 0,
+    "id": 989,
+    "month_from": 4,
+    "month_to": 4,
+    "quality": 3,
+    "region": 989,
+    "region_name": "United States – New York - New York City and Long Island",
+    "status": 1,
+    "trip_id": 100002,
+    "year_from": 2024,
+    "year_to": 2024
+   },
+   {
+    "can_be_hidden": false,
+    "date_from": "2024-04-29",
+    "date_to": "2024-05-02",
+    "day_from": 29,
+    "day_to": 2,
+    "flag1": "/img/flags_new/394.png",
+    "flag2": "/img/flags_new/577.png",
+    "hidden": 0,
+    "id": 967,
+    "month_from": 4,
+    "month_to": 5,
+    "quality": 3,
+    "region": 967,
+    "region_name": "United States – Illinois Northeast (Chicago, Naperville, Aurora)",
+    "status": 1,
+    "trip_id": 100002,
+    "year_from": 2024,
+    "year_to": 2024
+   }
+  ],
+  "year": null
+ }
+}

@@ -1,0 +1,69 @@
+{
+ "dates_extened": [],
+ "result": "OK",
+ "statistics": {},
+ "trips": [
+  {
+   "date_from": "2024-05-18",
+   "date_to": "2024-05-27",
+   "dates_missing": 0,
+   "description": "Balkans trip",
+   "id": 100001,
+   "regions": [
+    {
+     "flag1": "/img/flags_new/24.png",
+     "flag2": null,
+     "id": 9,
+     "region_name": "Croatia – Dalmatia (Split, Dubrovnik, Zadar, Knin, Brač, Hvar, Makarska)"
+    },
+    {
+     "flag1": "/img/flags_new/30.png",
+     "flag2": null,
+     "id": 47,
+     "region_name": "Montenegro – Central and Coastal (Podgorica, Nikšić, Kotor, Bar)"
+    },
+    {
+     "flag1": "/img/flags_new/24.png",
+     "flag2": null,
+     "id": 9,
+     "region_name": "Croatia – Dalmatia (Split, Dubrovnik, Zadar, Knin, Brač, Hvar, Makarska)"
+    },
+    {
+     "flag1": "/img/flags_new/23.png",
+     "flag2": null,
+     "id": 5,
+     "region_name": "Bosnia and Herzegovina – Federation Herzegovina (Mostar, Tomislavgrad)"
+    },
+    {
+     "flag1": "/img/flags_new/23.png",
+     "flag2": null,
+     "id": 4,
+     "region_name": "Bosnia and Herzegovina – Federation (Sarajevo, Tuzla, Zenica) and Brčko"
+    }
+   ],
+   "year": null
+  },
+  {
+   "date_from": "2024-04-24",
+   "date_to": "2024-05-02",
+   "dates_missing": 0,
+   "description": "US trip",
+   "id": 100002,
+   "regions": [
+    {
+     "flag1": "/img/flags_new/394.png",
+     "flag2": "/img/flags_new/600.png",
+     "id": 989,
+     "region_name": "United States – New York - New York City and Long Island"
+    },
+    {
+     "flag1": "/img/flags_new/394.png",
+     "flag2": "/img/flags_new/577.png",
+     "id": 967,
+     "region_name": "United States – Illinois Northeast (Chicago, Naperville, Aurora)"
+    }
+   ],
+   "year": null
+  }
+ ]
+}
