@@ -1,0 +1,25 @@
+{
+  "name": "nomadmania",
+  "version": "0.6.0",
+  "description": "Your NomadMania profile in Claude Code: series near a point, unvisited regions, trips, confirmed ticks. Unofficial.",
+  "author": { "name": "Roman Maliushkin", "url": "https://github.com/malyushkin" },
+  "homepage": "https://github.com/malyushkin/nomadmania-mcp",
+  "repository": "https://github.com/malyushkin/nomadmania-mcp",
+  "license": "Apache-2.0",
+  "keywords": ["nomadmania", "travel", "mcp"],
+  "userConfig": {
+    "nm_token": {
+      "type": "string",
+      "title": "NomadMania token",
+      "description": "On nomadmania.com, run localStorage.getItem('token') in the browser console. Valid about a year, full account access.",
+      "sensitive": true
+    }
+  },
+  "mcpServers": {
+    "nomadmania": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/malyushkin/nomadmania-mcp", "nomadmania-mcp"],
+      "env": { "NM_TOKEN": "${user_config.nm_token}" }
+    }
+  }
+}

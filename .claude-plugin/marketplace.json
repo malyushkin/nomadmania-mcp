@@ -1,0 +1,12 @@
+{
+  "name": "nomadmania-mcp",
+  "description": "Unofficial NomadMania MCP server packaged as a Claude Code plugin",
+  "owner": { "name": "Roman Maliushkin", "url": "https://github.com/malyushkin" },
+  "plugins": [
+    {
+      "name": "nomadmania",
+      "source": "./",
+      "description": "Your NomadMania profile in Claude Code: series near a point, unvisited regions, trips, confirmed ticks"
+    }
+  ]
+}

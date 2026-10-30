@@ -1,6 +1,6 @@
 [project]
 name = "nomadmania-mcp"
-version = "0.5.0"
+version = "0.6.0"
 description = "MCP server over wanderfill's NomadMania client: profile, series near a point, unvisited regions, confirmed series ticks"
 readme = "README.md"
 license = "Apache-2.0"

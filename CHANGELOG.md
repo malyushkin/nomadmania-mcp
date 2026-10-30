@@ -3,6 +3,18 @@
 All notable changes to `nomadmania-mcp` are documented here. Format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versioning follows [SemVer](https://semver.org/).
 
+## [0.6.0]
+
+### Added
+
+- Claude Code plugin: `.claude-plugin/` makes the repo a one-plugin marketplace. The plugin asks for the token, starts
+  the server with `uvx` from git and loads `skills/nomadmania`, the agent rules for writes, series rules and empty-tile
+  warnings.
+- Install without cloning: `uvx --from git+https://github.com/malyushkin/nomadmania-mcp nomadmania-mcp`, plus Cursor
+  and VS Code install links in the README.
+- GitHub Actions workflow running the tests.
+- Standalone public repo with synthetic test fixtures, Apache-2.0 license, logo and social preview image.
+
 ## [0.5.0]
 
 ### Added
