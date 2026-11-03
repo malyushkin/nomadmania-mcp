@@ -43,18 +43,19 @@ your account, so keep it private.
 As a plugin. It asks for the token and adds the agent rules from [`skills/nomadmania`](skills/nomadmania/SKILL.md):
 
 ```text
-/plugin install nomadmania --marketplace malyushkin/nomadmania-mcp
+/plugin marketplace add malyushkin/nomadmania-mcp
+/plugin install nomadmania@nomadmania-mcp
 ```
 
 Or the server alone:
 
 ```bash
-claude mcp add nomadmania --env NM_TOKEN=<token> -- uvx --from git+https://github.com/malyushkin/nomadmania-mcp nomadmania-mcp
+claude mcp add nomadmania --env NM_TOKEN=<token> -- uvx --from git+https://github.com/malyushkin/nomadmania-mcp@v0.6.0 nomadmania-mcp
 ```
 
 ### Cursor, VS Code
 
-Install links: [Cursor](https://cursor.com/en/install-mcp?name=nomadmania&config=eyJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyItLWZyb20iLCJnaXQraHR0cHM6Ly9naXRodWIuY29tL21hbHl1c2hraW4vbm9tYWRtYW5pYS1tY3AiLCJub21hZG1hbmlhLW1jcCJdLCJlbnYiOnsiTk1fVE9LRU4iOiIifX0=) (fill in `NM_TOKEN` in the install dialog), [VS Code](https://insiders.vscode.dev/redirect/mcp/install?name=nomadmania&inputs=%5B%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22nm_token%22%2C%22description%22%3A%22NomadMania%20token%22%2C%22password%22%3Atrue%7D%5D&config=%7B%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fmalyushkin%2Fnomadmania-mcp%22%2C%22nomadmania-mcp%22%5D%2C%22env%22%3A%7B%22NM_TOKEN%22%3A%22%24%7Binput%3Anm_token%7D%22%7D%7D) (asks for the token).
+Install links: [Cursor](https://cursor.com/en/install-mcp?name=nomadmania&config=eyJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyItLWZyb20iLCJnaXQraHR0cHM6Ly9naXRodWIuY29tL21hbHl1c2hraW4vbm9tYWRtYW5pYS1tY3BAdjAuNi4wIiwibm9tYWRtYW5pYS1tY3AiXSwiZW52Ijp7Ik5NX1RPS0VOIjoiIn19) (fill in `NM_TOKEN` in the install dialog), [VS Code](https://insiders.vscode.dev/redirect/mcp/install?name=nomadmania&inputs=%5B%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22nm_token%22%2C%22description%22%3A%22NomadMania%20token%22%2C%22password%22%3Atrue%7D%5D&config=%7B%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fmalyushkin%2Fnomadmania-mcp%40v0.6.0%22%2C%22nomadmania-mcp%22%5D%2C%22env%22%3A%7B%22NM_TOKEN%22%3A%22%24%7Binput%3Anm_token%7D%22%7D%7D) (asks for the token).
 
 ### Other MCP clients
 
@@ -63,7 +64,7 @@ Install links: [Cursor](https://cursor.com/en/install-mcp?name=nomadmania&config
   "mcpServers": {
     "nomadmania": {
       "command": "uvx",
-      "args": ["--from", "git+https://github.com/malyushkin/nomadmania-mcp", "nomadmania-mcp"],
+      "args": ["--from", "git+https://github.com/malyushkin/nomadmania-mcp@v0.6.0", "nomadmania-mcp"],
       "env": { "NM_TOKEN": "<token>" }
     }
   }
@@ -125,6 +126,8 @@ API. To update:
 1. Set `rev` to the new commit, run `uv lock`.
 2. `uv run pytest`, then a live `series_near` and `unvisited_regions_near`.
 3. Bump the version (`pyproject.toml`, badge, `CHANGELOG.md` with the new rev).
+4. After merge, tag the release (`git tag vX.Y.Z`) and move the `@vX.Y.Z` pin in the install commands, the
+   Cursor/VS Code links and `.claude-plugin/plugin.json`.
 
 `scripts/probe.py` dumps real API answers into `.probe/` (git-ignored) to check a fact before changing the synthetic
 fixtures (`tiles` needs no token, `api` does).

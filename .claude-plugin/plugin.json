@@ -18,7 +18,7 @@
   "mcpServers": {
     "nomadmania": {
       "command": "uvx",
-      "args": ["--from", "git+https://github.com/malyushkin/nomadmania-mcp", "nomadmania-mcp"],
+      "args": ["--from", "git+https://github.com/malyushkin/nomadmania-mcp@v0.6.0", "nomadmania-mcp"],
       "env": { "NM_TOKEN": "${user_config.nm_token}" }
     }
   }
