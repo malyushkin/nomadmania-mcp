@@ -3,6 +3,15 @@
 All notable changes to `nomadmania-mcp` are documented here. Format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versioning follows [SemVer](https://semver.org/).
 
+## [0.7.0]
+
+### Added
+
+- `nm-collection-export` command: prints every visited region with the date of its first visit (transit legs and
+  future trips don't count), numbered, with the running country count, ISO flag code and part of the world, as JSON.
+  Read-only. Regions marked visited without a dated trip leg are listed on stderr. Feeds the collection page on
+  grav.maliushkin.me.
+
 ## [0.6.0]
 
 ### Added
