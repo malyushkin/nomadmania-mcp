@@ -98,6 +98,16 @@ untick.
 patch. An edited trip can come back under a new `trip_id`, so verification finds it by title and legs. There is no
 trip delete.
 
+## Collection export
+
+`nm-collection-export` is a separate command, not an MCP tool. It prints your regions as JSON, each with the date of
+its first visit (transit and future trips don't count), its number in the collection and the running country count.
+It only reads. Regions marked visited without a dated trip are listed on stderr.
+
+```bash
+uv run nm-collection-export > collection.json
+```
+
 ## For AI agents
 
 The plugin loads these rules as a skill; with the server alone, give them to your agent yourself

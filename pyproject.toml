@@ -1,6 +1,6 @@
 [project]
 name = "nomadmania-mcp"
-version = "0.6.0"
+version = "0.7.0"
 description = "MCP server over wanderfill's NomadMania client: profile, series near a point, unvisited regions, confirmed series ticks"
 readme = "README.md"
 license = "Apache-2.0"
@@ -16,6 +16,7 @@ Repository = "https://github.com/malyushkin/nomadmania-mcp"
 
 [project.scripts]
 nomadmania-mcp = "nomadmania_mcp.server:main"
+nm-collection-export = "nomadmania_mcp.collection:main"
 
 [dependency-groups]
 dev = ["pytest>=8.0"]

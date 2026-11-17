@@ -17,6 +17,7 @@ def trip(tid, date_from, *legs, title="Trip"):
 def test_region_label_drops_country_and_parentheses():
     assert region_label("Croatia – Dalmatia (Split, Dubrovnik)") == "Dalmatia"
     assert region_label("Serbia - Belgrade, West") == "Belgrade, West"
+    assert region_label("Poland – Mazovia (Warsaw, Radom) and Łódź") == "Mazovia and Łódź"
 
 
 def test_first_visit_wins():
@@ -91,3 +92,59 @@ def test_unknown_country_raises():
 def test_undated():
     trips = [trip(1, "2020-01-01", leg(9, "Croatia – Dalmatia", "2020-01-01"))]
     assert undated(trips, {9, 77}, TODAY) == {77}
+
+
+# --- nm-collection-export
+
+import json  # noqa: E402
+from unittest.mock import MagicMock  # noqa: E402
+
+from nomadmania_mcp import collection  # noqa: E402
+from tests.test_trips import FIX  # noqa: E402
+
+
+def export(monkeypatch, capsys, visited=(989, 967, 9, 47, 5, 4), fail=False):
+    nm = MagicMock()
+    if fail:
+        nm.trips_for_year.side_effect = RuntimeError("network down")
+    else:
+        nm.trips_for_year.side_effect = lambda y: json.loads((FIX / "trips_2024.json").read_text()) if y == 2024 \
+            else {"trips": []}
+    nm.trip.side_effect = lambda tid: json.loads((FIX / f"trip_{tid}.json").read_text())
+    nm.visited_region_ids.return_value = list(visited)
+    monkeypatch.setattr(collection, "get_client", lambda: nm)
+    with pytest.raises(SystemExit) as exit_:
+        collection.main()
+    out, err = capsys.readouterr()
+    return exit_.value.code, out, err
+
+
+def test_main_prints_json(monkeypatch, capsys):
+    code, out, err = export(monkeypatch, capsys)
+    data = json.loads(out)
+    assert code == 0 and err == ""
+    assert data["generated_at"].endswith("Z")
+    assert [r["n"] for r in data["regions"]] == [1, 2, 3, 4, 5, 6]
+    assert data["regions"][0]["region"] == "New York - New York City and Long Island"
+
+
+def test_main_reports_undated(monkeypatch, capsys):
+    code, out, err = export(monkeypatch, capsys, visited=(989, 967, 9, 47, 5, 4, 999))
+    assert code == 0 and "undated region ids: [999]" in err
+
+
+def test_main_fails_closed(monkeypatch, capsys):
+    code, out, err = export(monkeypatch, capsys, fail=True)
+    assert code == 1 and out == "" and "network down" in err
+
+
+def test_single_region_country_drops_parentheses():
+    one = {"region_id": 3, "name": "Moldova (Chisinau, Soroca)", "country": "Moldova (Chisinau, Soroca)",
+           "date_from": "2018-05-01", "date_to": "2018-05-01", "quality": 3}
+    out = build([trip(1, "2018-05-01", one)], TODAY)
+    assert (out[0]["country"], out[0]["region"], out[0]["iso"]) == ("Moldova", "Moldova", "md")
+
+
+def test_minimal_visit_counts():
+    out = build([trip(1, "2013-06-29", leg(304, "Russia – Buryatia Republic", "2013-06-29", quality=2))], TODAY)
+    assert [r["region"] for r in out] == ["Buryatia Republic"]
